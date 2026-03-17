@@ -43,6 +43,14 @@ const Hero = () => {
         >
           Precision AI Consulting
         </motion.span>
+        <motion.span
+          className="text-2xl md:text-3xl font-medium text-primary tracking-tight block mb-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0, 0, 1] }}
+        >
+          Uncode AI
+        </motion.span>
 
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-gradient-hero pb-4 leading-[0.95]">
           {"The Intelligence Layer for Global Enterprise.".split(" ").map((word, i) => (
