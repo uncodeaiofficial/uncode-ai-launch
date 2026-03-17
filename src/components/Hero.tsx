@@ -36,7 +36,7 @@ const Hero = () => {
         className="z-10 text-center max-w-4xl"
       >
         <motion.span
-          className="label-mono mb-6 block"
+          className="label-mono mb-2 block"
           initial={{ opacity: 0, letterSpacing: "0.4em" }}
           animate={{ opacity: 1, letterSpacing: "0.2em" }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -44,10 +44,10 @@ const Hero = () => {
           Precision AI Consulting
         </motion.span>
         <motion.span
-          className="text-2xl md:text-3xl font-medium text-primary tracking-tight block mb-4"
+          className="text-4xl md:text-6xl font-medium text-primary tracking-tight block mb-2"
           initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0, 0, 1] }}
+          animate={{ opacity: 1, y: [0, -6, 0] }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0, 0, 1], y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 } }}
         >
           Uncode AI
         </motion.span>
