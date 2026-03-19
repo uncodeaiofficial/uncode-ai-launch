@@ -2,11 +2,36 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const team = [
-  { name: "Dr. Elena Vasquez", role: "CEO & Chief AI Architect", bio: "Former ML Lead at DeepMind. PhD in Computational Neuroscience, Stanford." },
-  { name: "Marcus Chen", role: "CTO", bio: "Ex-Principal Engineer at Stripe. Built distributed systems serving 500M+ requests/day." },
-  { name: "Aisha Patel", role: "VP of AI Research", bio: "Published 40+ papers in NeurIPS/ICML. Pioneered transformer architectures for enterprise NLP." },
-  { name: "James Okafor", role: "Head of Engineering", bio: "Scaled ML infrastructure at Netflix. Specialist in real-time inference systems." },
+  { name: "Tyler", role: "Founder & CEO" },
+  { name: "Team Member", role: "Head of AI Engineering" },
+  { name: "Team Member", role: "Strategy Lead" },
+  { name: "Team Member", role: "Client Success" },
 ];
+
+type TeamMember = typeof team[0];
+
+const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: [0.2, 0, 0, 1] }}
+      className="card-surface p-6"
+    >
+      <div className="w-12 h-12 rounded-full bg-primary/20 mb-4 flex items-center justify-center">
+        <span className="font-mono text-sm text-primary font-medium">
+          {member.name.split(" ").map((n) => n[0]).join("")}
+        </span>
+      </div>
+      <h3 className="text-sm font-medium text-foreground">{member.name}</h3>
+      <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary mt-1">{member.role}</p>
+    </motion.div>
+  );
+};
 
 const About = () => {
   const ref = useRef(null);
@@ -24,40 +49,19 @@ const About = () => {
         >
           <span className="label-mono mb-4 block">Who We Are</span>
           <h2 className="text-3xl md:text-5xl font-medium tracking-tighter text-foreground mb-6">
-            Built by engineers, for engineers.
+            Built by engineers. Obsessed with outcomes.
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed" style={{ textWrap: "pretty" }}>
-            Uncode AI was founded by a team of researchers and engineers from the world's
-            leading AI labs and technology companies. We don't just consult—we build, deploy,
-            and maintain production AI systems.
+          <p className="text-muted-foreground text-lg leading-relaxed" style={{ textWrap: "pretty" } as React.CSSProperties & { textWrap: string }}>
+            Uncode AI was founded to close the gap between AI hype and real business results.
+            We're practitioners — not theorists — and we work hands-on with your data, your team,
+            and your goals. Every engagement ends with something running in production.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {team.map((member, i) => {
-            const cardRef = useRef(null);
-            const cardInView = useInView(cardRef, { once: true, margin: "-80px" });
-
-            return (
-              <motion.div
-                ref={cardRef}
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={cardInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.2, 0, 0, 1] }}
-                className="card-surface p-6"
-              >
-                <div className="w-12 h-12 rounded-full bg-secondary mb-4 flex items-center justify-center">
-                  <span className="font-mono text-sm text-primary font-medium">
-                    {member.name.split(' ').map(n => n[0]).join('')}
-                  </span>
-                </div>
-                <h3 className="text-sm font-medium text-foreground">{member.name}</h3>
-                <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary mt-1 mb-3">{member.role}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">{member.bio}</p>
-              </motion.div>
-            );
-          })}
+          {team.map((member, i) => (
+            <TeamCard key={`${member.name}-${i}`} member={member} index={i} />
+          ))}
         </div>
       </div>
     </section>
