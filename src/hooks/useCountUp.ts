@@ -9,7 +9,7 @@ export const useCountUp = (end: number, duration = 2000, suffix = "") => {
 
   useEffect(() => {
     if (!inView) return;
-    let start = 0;
+    const start = 0;
     const startTime = performance.now();
 
     const tick = (now: number) => {
