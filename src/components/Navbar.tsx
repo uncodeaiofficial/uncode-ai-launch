@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import LogoIcon from "./LogoIcon";
 
 const navLinks = [
   { label: "Services", href: "#services" },
+  { label: "How We Work", href: "#how-we-work" },
   { label: "Case Studies", href: "#cases" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
@@ -30,9 +32,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
-            <span className="font-mono text-xs font-bold text-primary-foreground">U</span>
-          </div>
+          <LogoIcon className="w-8 h-8 text-primary" />
           <span className="text-foreground font-medium text-lg tracking-tight">Uncode AI</span>
         </a>
 
@@ -48,7 +48,7 @@ const Navbar = () => {
           ))}
           <a
             href="#contact"
-            className="text-sm bg-secondary hover:bg-muted text-foreground h-9 px-5 rounded-lg flex items-center transition-all duration-200 glow-border"
+            className="text-sm bg-primary hover:bg-accent text-primary-foreground h-9 px-5 rounded-lg flex items-center transition-all duration-200"
           >
             Start a Project
           </a>
@@ -81,6 +81,13 @@ const Navbar = () => {
                   {link.label}
                 </a>
               ))}
+              <a
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="text-sm bg-primary text-primary-foreground h-9 px-5 rounded-lg flex items-center w-fit transition-all duration-200"
+              >
+                Start a Project
+              </a>
             </div>
           </motion.div>
         )}
