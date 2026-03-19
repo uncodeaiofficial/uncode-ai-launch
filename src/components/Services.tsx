@@ -1,48 +1,55 @@
-import { motion } from "framer-motion";
-import { Brain, Workflow, Database, Shield, Cpu, BarChart3 } from "lucide-react";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { ClipboardCheck, Map, Wrench, Code2, GraduationCap, UserCheck } from "lucide-react";
 import { useRef } from "react";
 
 const services = [
   {
-    icon: Brain,
-    title: "Custom LLM Development",
-    description: "Fine-tuned large language models built on your proprietary data with enterprise-grade security and performance.",
-    tag: "Foundation Models",
+    icon: ClipboardCheck,
+    title: "AI Readiness Assessment",
+    description: "A one-time audit of your data, workflows, and tech stack to identify your highest-impact AI opportunities.",
+    tag: "Audit",
+    price: "$1,500–$5,000",
   },
   {
-    icon: Workflow,
-    title: "Agentic Workflows",
-    description: "Autonomous AI agents that orchestrate complex multi-step business processes with human-in-the-loop oversight.",
-    tag: "Automation",
+    icon: Map,
+    title: "AI Strategy & Roadmap",
+    description: "A prioritized plan for which AI tools and models to adopt, in what order, aligned to your goals and budget.",
+    tag: "Strategy",
+    price: "$3,000–$10,000",
   },
   {
-    icon: Database,
-    title: "RAG Architecture",
-    description: "Retrieval-augmented generation systems that ground AI responses in your organization's knowledge base.",
-    tag: "Knowledge Systems",
+    icon: Wrench,
+    title: "AI Tool Implementation",
+    description: "Hands-on setup of third-party AI tools — ChatGPT Enterprise, RAG systems, automation pipelines — scoped per project.",
+    tag: "Implementation",
+    price: "$5,000–$25,000",
   },
   {
-    icon: Shield,
-    title: "AI Safety & Governance",
-    description: "Comprehensive frameworks for responsible AI deployment including bias testing, monitoring, and compliance.",
-    tag: "Compliance",
+    icon: Code2,
+    title: "Custom AI Development",
+    description: "Custom models, fine-tuned LLMs, or AI-integrated software built to your exact specifications.",
+    tag: "Development",
+    price: "$15,000–$75,000+",
   },
   {
-    icon: Cpu,
-    title: "MLOps Infrastructure",
-    description: "End-to-end machine learning pipelines with automated training, evaluation, and deployment at scale.",
-    tag: "Infrastructure",
+    icon: GraduationCap,
+    title: "AI Training & Workshops",
+    description: "Practical sessions that teach your team to use AI tools effectively, with real workflows and measurable outcomes.",
+    tag: "Training",
+    price: "$500–$3,000/day",
   },
   {
-    icon: BarChart3,
-    title: "Data Strategy",
-    description: "Transform raw enterprise data into structured, AI-ready assets that fuel continuous model improvement.",
-    tag: "Analytics",
+    icon: UserCheck,
+    title: "Fractional AI Advisor",
+    description: "Ongoing strategic AI guidance without the cost of a full-time hire. Popular with SMBs scaling their AI capability.",
+    tag: "Retainer",
+    price: "$2,000–$8,000/mo",
   },
 ];
 
-const ServiceCard = ({ service, index }: { service: typeof services[0]; index: number }) => {
+type Service = typeof services[0];
+
+const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -52,10 +59,10 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.2, 0, 0, 1] }}
-      className="card-surface-hover p-6 md:p-8 group"
+      className="card-surface-hover p-6 md:p-8 group flex flex-col"
     >
       <div className="flex items-start justify-between mb-6">
-        <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors duration-200">
+        <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-200">
           <service.icon size={20} className="text-primary" />
         </div>
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
@@ -63,7 +70,12 @@ const ServiceCard = ({ service, index }: { service: typeof services[0]; index: n
         </span>
       </div>
       <h3 className="text-lg font-medium text-foreground mb-3 tracking-tight">{service.title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
+      <p className="text-sm text-muted-foreground leading-relaxed flex-1">{service.description}</p>
+      <div className="mt-5">
+        <span className="inline-block font-mono text-xs text-accent bg-accent/10 border border-accent/20 px-3 py-1 rounded-full">
+          {service.price}
+        </span>
+      </div>
     </motion.div>
   );
 };
@@ -82,9 +94,9 @@ const Services = () => {
           transition={{ duration: 0.6, ease: [0.2, 0, 0, 1] }}
           className="text-center mb-16"
         >
-          <span className="label-mono mb-4 block">What We Build</span>
+          <span className="label-mono mb-4 block">What We Offer</span>
           <h2 className="text-3xl md:text-5xl font-medium tracking-tighter text-foreground">
-            Enterprise AI, engineered.
+            AI consulting, end to end.
           </h2>
         </motion.div>
 
