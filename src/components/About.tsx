@@ -3,7 +3,7 @@ import { useRef } from "react";
 
 const team = [
   { name: "Tyler Allen", role: "Founder & CEO", photo: "/tyler.png" },
-  { name: "Andrew", role: "VP of Sales", photo: "" },
+  { name: "Andrew", role: "VP of Sales", photo: "/andrew.jpg" },
   { name: "Austin", role: "VP of Marketing", photo: "" },
   { name: "Kristina", role: "Client Success", photo: "" },
 ];
