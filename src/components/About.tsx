@@ -2,10 +2,10 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const team = [
-  { name: "Tyler", role: "Founder & CEO" },
-  { name: "Team Member", role: "Head of AI Engineering" },
-  { name: "Team Member", role: "Strategy Lead" },
-  { name: "Team Member", role: "Client Success" },
+  { name: "Tyler Allen", role: "Founder & CEO" },
+  { name: "Andrew", role: "VP of Sales" },
+  { name: "Austin", role: "VP of Marketing" },
+  { name: "Kristina", role: "Client Success" },
 ];
 
 type TeamMember = typeof team[0];
@@ -49,7 +49,7 @@ const About = () => {
         >
           <span className="label-mono mb-4 block">Who We Are</span>
           <h2 className="text-3xl md:text-5xl font-medium tracking-tighter text-foreground mb-6">
-            Built by engineers. Obsessed with outcomes.
+            Built on results. Driven by impact.
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed" style={{ textWrap: "pretty" } as React.CSSProperties & { textWrap: string }}>
             Uncode AI was founded to close the gap between AI hype and real business results.

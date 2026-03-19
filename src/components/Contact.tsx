@@ -10,6 +10,9 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    setTimeout(() => {
+      window.open("https://calendly.com/uncodeai/30min", "_blank");
+    }, 800);
   };
 
   const inputClass =
@@ -61,7 +64,15 @@ const Contact = () => {
                   <CheckCircle className="text-primary" size={22} />
                 </div>
                 <h3 className="text-lg font-medium text-foreground mb-2">Message received.</h3>
-                <p className="text-sm text-muted-foreground">We'll be in touch within 24 hours.</p>
+                <p className="text-sm text-muted-foreground mb-4">Opening your booking link now...</p>
+                <a
+                  href="https://calendly.com/uncodeai/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground h-10 px-6 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity"
+                >
+                  Book Your Discovery Call
+                </a>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="card-surface p-6 md:p-8 flex flex-col gap-5">
