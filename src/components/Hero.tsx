@@ -1,17 +1,13 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import FloatingParticles from "./FloatingParticles";
-import { useCountUp } from "@/hooks/useCountUp";
 
-const AnimatedStat = ({ value, suffix, label }: { value: number; suffix: string; label: string }) => {
-  const { ref, display } = useCountUp(value, 2000, suffix);
-  return (
-    <div className="text-center" ref={ref}>
-      <div className="font-mono text-2xl md:text-3xl font-medium text-foreground">{display}</div>
-      <div className="font-mono text-xs text-muted-foreground mt-1 uppercase tracking-wider">{label}</div>
-    </div>
-  );
-};
+const AnimatedStat = ({ display, label }: { display: string; label: string }) => (
+  <div className="text-center">
+    <div className="font-mono text-2xl md:text-3xl font-medium text-foreground">{display}</div>
+    <div className="font-mono text-xs text-muted-foreground mt-1 uppercase tracking-wider">{label}</div>
+  </div>
+);
 
 const Hero = () => {
   return (
@@ -21,7 +17,7 @@ const Hero = () => {
 
       {/* Radial glow */}
       <motion.div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-[120px] z-0"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-primary/10 rounded-full blur-[120px] z-0"
         animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -43,17 +39,23 @@ const Hero = () => {
         >
           Precision AI Consulting
         </motion.span>
+
         <motion.span
-          className="text-4xl md:text-6xl font-medium text-primary tracking-tight block mb-2"
+          className="text-4xl md:text-6xl font-medium text-primary tracking-tight block mb-2 text-gradient-hero"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: [0, -6, 0] }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0, 0, 1], y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 } }}
+          transition={{
+            duration: 0.8,
+            delay: 0.3,
+            ease: [0.2, 0, 0, 1],
+            y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
+          }}
         >
           Uncode AI
         </motion.span>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-gradient-hero pb-4 leading-[0.95]">
-          {"The Intelligence Layer for Global Enterprise.".split(" ").map((word, i) => (
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-foreground pb-4 leading-[0.95]">
+          {"The Intelligence Layer for Modern Business.".split(" ").map((word, i) => (
             <motion.span
               key={i}
               className="inline-block mr-[0.25em]"
@@ -68,13 +70,12 @@ const Hero = () => {
 
         <motion.p
           className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mt-6"
-          style={{ textWrap: "pretty" }}
+          style={{ textWrap: "pretty" } as React.CSSProperties & { textWrap: string }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          We deploy custom LLM architectures and agentic workflows that turn
-          unstructured data into competitive advantage.
+          We help companies identify, implement, and scale AI — from strategy to custom deployment.
         </motion.p>
 
         {/* Stats row */}
@@ -84,9 +85,9 @@ const Hero = () => {
           transition={{ delay: 1, duration: 0.6 }}
           className="flex items-center justify-center gap-8 md:gap-12 mt-10"
         >
-          <AnimatedStat value={94} suffix="%" label="Model Accuracy" />
-          <AnimatedStat value={2} suffix=".4ms" label="Avg Latency" />
-          <AnimatedStat value={1} suffix=".2M" label="Saved / Year" />
+          <AnimatedStat display="50+" label="Clients Served" />
+          <AnimatedStat display="4.9★" label="Client Rating" />
+          <AnimatedStat display="$2M+" label="Saved / Year" />
         </motion.div>
 
         <motion.div
@@ -97,7 +98,7 @@ const Hero = () => {
         >
           <a
             href="#contact"
-            className="pulse-cta inline-flex items-center justify-center gap-2 bg-foreground text-background h-12 px-8 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity duration-200"
+            className="pulse-cta inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground h-12 px-8 rounded-lg font-medium text-sm hover:opacity-90 transition-opacity duration-200"
           >
             Start a Project
             <ArrowRight size={16} />
