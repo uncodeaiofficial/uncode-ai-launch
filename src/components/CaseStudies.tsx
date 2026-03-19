@@ -26,6 +26,48 @@ const cases = [
   },
 ];
 
+type Case = typeof cases[0];
+
+const CaseStudyCard = ({ c, index }: { c: Case; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.15, ease: [0.2, 0, 0, 1] }}
+      className="card-surface p-6 md:p-8 group cursor-pointer hover:shadow-[var(--shadow-elevated)] transition-shadow duration-300"
+    >
+      <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary">
+              {c.industry}
+            </span>
+            <span className="text-border">•</span>
+            <span className="text-sm text-muted-foreground">{c.client}</span>
+          </div>
+          <h3 className="text-xl md:text-2xl font-medium text-foreground tracking-tight mb-3 flex items-center gap-2">
+            {c.result}
+            <ArrowUpRight size={18} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">{c.description}</p>
+        </div>
+        <div className="flex gap-6 lg:gap-8 shrink-0">
+          {Object.entries(c.metrics).map(([key, val]) => (
+            <div key={key} className="text-center">
+              <div className="font-mono text-lg md:text-xl font-medium text-foreground">{val}</div>
+              <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{key}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const CaseStudies = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -47,47 +89,9 @@ const CaseStudies = () => {
         </motion.div>
 
         <div className="flex flex-col gap-4">
-          {cases.map((c, i) => {
-            const cardRef = useRef(null);
-            const cardInView = useInView(cardRef, { once: true, margin: "-80px" });
-
-            return (
-              <motion.div
-                ref={cardRef}
-                key={c.client}
-                initial={{ opacity: 0, y: 20 }}
-                animate={cardInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.15, ease: [0.2, 0, 0, 1] }}
-                className="card-surface p-6 md:p-8 group cursor-pointer hover:shadow-[var(--shadow-elevated)] transition-shadow duration-300"
-              >
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary">
-                        {c.industry}
-                      </span>
-                      <span className="text-border">•</span>
-                      <span className="text-sm text-muted-foreground">{c.client}</span>
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-medium text-foreground tracking-tight mb-3 flex items-center gap-2">
-                      {c.result}
-                      <ArrowUpRight size={18} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">{c.description}</p>
-                  </div>
-
-                  <div className="flex gap-6 lg:gap-8 shrink-0">
-                    {Object.entries(c.metrics).map(([key, val]) => (
-                      <div key={key} className="text-center">
-                        <div className="font-mono text-lg md:text-xl font-medium text-foreground">{val}</div>
-                        <div className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground mt-1">{key}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {cases.map((c, i) => (
+            <CaseStudyCard key={c.client} c={c} index={i} />
+          ))}
         </div>
       </div>
     </section>
