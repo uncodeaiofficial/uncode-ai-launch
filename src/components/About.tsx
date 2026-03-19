@@ -2,13 +2,13 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const team = [
-  { name: "Tyler Allen", role: "Founder & CEO" },
-  { name: "Andrew", role: "VP of Sales" },
-  { name: "Austin", role: "VP of Marketing" },
-  { name: "Kristina", role: "Client Success" },
+  { name: "Tyler Allen", role: "Founder & CEO", photo: "/tyler.png" },
+  { name: "Andrew", role: "VP of Sales", photo: "" },
+  { name: "Austin", role: "VP of Marketing", photo: "" },
+  { name: "Kristina", role: "Client Success", photo: "" },
 ];
 
-type TeamMember = typeof team[0];
+type TeamMember = { name: string; role: string; photo: string };
 
 const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
   const ref = useRef(null);
@@ -22,11 +22,19 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.2, 0, 0, 1] }}
       className="card-surface p-6"
     >
-      <div className="w-12 h-12 rounded-full bg-primary/20 mb-4 flex items-center justify-center">
-        <span className="font-mono text-sm text-primary font-medium">
-          {member.name.split(" ").map((n) => n[0]).join("")}
-        </span>
-      </div>
+      {member.photo ? (
+        <img
+          src={member.photo}
+          alt={member.name}
+          className="w-16 h-16 rounded-full object-cover object-top mb-4"
+        />
+      ) : (
+        <div className="w-12 h-12 rounded-full bg-primary/20 mb-4 flex items-center justify-center">
+          <span className="font-mono text-sm text-primary font-medium">
+            {member.name.split(" ").map((n) => n[0]).join("")}
+          </span>
+        </div>
+      )}
       <h3 className="text-sm font-medium text-foreground">{member.name}</h3>
       <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary mt-1">{member.role}</p>
     </motion.div>
