@@ -2,8 +2,8 @@ import { useEffect } from "react";
 
 // SETUP: Go to tawk.to → sign up → create a property for uncodeai.io
 // Then paste your Property ID and Widget ID below (from the widget embed code)
-const TAWK_PROPERTY_ID = "YOUR_PROPERTY_ID";
-const TAWK_WIDGET_ID = "default";
+const TAWK_PROPERTY_ID = "69bd656e977ac51c36883e84";
+const TAWK_WIDGET_ID = "1jk5t8efp";
 
 declare global {
   interface Window {
