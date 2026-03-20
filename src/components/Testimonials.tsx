@@ -36,8 +36,9 @@ const TestimonialCard = ({ t, index }: { t: Testimonial; index: number }) => {
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileHover={{ y: -5, boxShadow: "0 0 28px hsl(180 74% 36% / 0.14)" }}
       transition={{ duration: 0.5, delay: index * 0.15, ease: [0.2, 0, 0, 1] }}
-      className="card-surface p-6 md:p-8 flex flex-col gap-6"
+      className="card-surface p-6 md:p-8 flex flex-col gap-6 cursor-default"
     >
       <p className="text-sm text-muted-foreground leading-relaxed flex-1">
         "{t.quote}"

@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, Mail, MapPin } from "lucide-react";
 
 const Contact = () => {
   const ref = useRef(null);
@@ -36,7 +36,7 @@ const Contact = () => {
               Tell us about your challenge. We'll respond within 24 hours with an
               initial assessment and proposed architecture.
             </p>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 mb-8">
               {[
                 { label: "Discovery Call", desc: "30-minute technical deep dive" },
                 { label: "Architecture Review", desc: "Free assessment of your AI readiness" },
@@ -50,6 +50,17 @@ const Contact = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            <a
+              href="mailto:info@uncodeai.io"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+            >
+              <Mail size={15} className="text-primary" />
+              info@uncodeai.io
+            </a>
+            <div className="inline-flex items-center gap-2 text-sm text-muted-foreground mt-2">
+              <MapPin size={15} className="text-primary" />
+              Chicago, IL
             </div>
           </motion.div>
 

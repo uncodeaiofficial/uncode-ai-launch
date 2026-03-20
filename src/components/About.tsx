@@ -1,5 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Linkedin } from "lucide-react";
+
+const COMPANY_LINKEDIN = "https://www.linkedin.com/company/uncodeai/";
 
 const team = [
   { name: "Tyler Allen", role: "Founder & CEO", photo: "/tyler.png" },
@@ -19,15 +22,12 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileHover={{ y: -5, boxShadow: "0 0 24px hsl(180 74% 36% / 0.14)" }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: [0.2, 0, 0, 1] }}
-      className="card-surface p-6"
+      className="card-surface p-6 cursor-default flex flex-col"
     >
       {member.photo ? (
-        <img
-          src={member.photo}
-          alt={member.name}
-          className="w-16 h-16 rounded-full object-cover object-top mb-4"
-        />
+        <img src={member.photo} alt={member.name} className="w-16 h-16 rounded-full object-cover object-top mb-4" />
       ) : (
         <div className="w-12 h-12 rounded-full bg-primary/20 mb-4 flex items-center justify-center">
           <span className="font-mono text-sm text-primary font-medium">
@@ -36,7 +36,17 @@ const TeamCard = ({ member, index }: { member: TeamMember; index: number }) => {
         </div>
       )}
       <h3 className="text-sm font-medium text-foreground">{member.name}</h3>
-      <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary mt-1">{member.role}</p>
+      <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-primary mt-1 flex-1">{member.role}</p>
+      <a
+        href={COMPANY_LINKEDIN}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors duration-200 w-fit"
+        aria-label={`${member.name} on LinkedIn`}
+      >
+        <Linkedin size={12} />
+        LinkedIn
+      </a>
     </motion.div>
   );
 };
@@ -64,6 +74,15 @@ const About = () => {
             We're practitioners — not theorists — and we work hands-on with your data, your team,
             and your goals. Every engagement ends with something running in production.
           </p>
+          <a
+            href={COMPANY_LINKEDIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-6 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+          >
+            <Linkedin size={15} className="text-primary" />
+            Follow us on LinkedIn
+          </a>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">

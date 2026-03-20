@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import FloatingParticles from "./FloatingParticles";
+import NeuralBackground from "./NeuralBackground";
+import AnimatedHeroLogo from "./AnimatedHeroLogo";
 
 const AnimatedStat = ({ display, label }: { display: string; label: string }) => (
   <div className="text-center">
@@ -22,8 +23,8 @@ const Hero = () => {
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Floating particles */}
-      <FloatingParticles />
+      {/* Neural network background */}
+      <NeuralBackground />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -31,6 +32,8 @@ const Hero = () => {
         transition={{ duration: 0.8, ease: [0.2, 0, 0, 1] }}
         className="z-10 text-center max-w-4xl"
       >
+        <AnimatedHeroLogo />
+
         <motion.span
           className="label-mono mb-2 block"
           initial={{ opacity: 0, letterSpacing: "0.4em" }}
@@ -41,20 +44,16 @@ const Hero = () => {
         </motion.span>
 
         <motion.span
-          className="text-4xl md:text-6xl font-medium text-primary tracking-tight block mb-2 text-gradient-hero"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: [0, -6, 0] }}
-          transition={{
-            duration: 0.8,
-            delay: 0.3,
-            ease: [0.2, 0, 0, 1],
-            y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 },
-          }}
+          className="block mb-3 text-gradient-hero"
+          style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700, fontSize: "clamp(3rem, 9vw, 6rem)", lineHeight: 1, letterSpacing: "-0.03em" }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.2, 0, 0, 1] }}
         >
           Uncode AI
         </motion.span>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tighter text-foreground pb-4 leading-[0.95]">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-foreground pb-4 leading-[1.05]" style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700 }}>
           {"The Intelligence Layer for Modern Business.".split(" ").map((word, i) => (
             <motion.span
               key={i}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://uncodeai.io/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://uncodeai.io/blog</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://uncodeai.io/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://uncodeai.io/services/ai-readiness-assessment</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/ai-strategy-roadmap</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/ai-tool-implementation</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/custom-ai-development</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/ai-training-workshops</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/fractional-ai-advisor</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/ai-automation-workflow</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/ai-agent-development</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/services/geo-generative-engine-optimization</loc><priority>0.9</priority></url>
+  <url><loc>https://uncodeai.io/case-studies/global-logistics-corp</loc><priority>0.7</priority></url>
+  <url><loc>https://uncodeai.io/case-studies/finserve-holdings</loc><priority>0.7</priority></url>
+  <url><loc>https://uncodeai.io/case-studies/medtech-dynamics</loc><priority>0.7</priority></url>
+  <url><loc>https://uncodeai.io/blog/what-is-geo</loc><priority>0.7</priority></url>
+  <url><loc>https://uncodeai.io/blog/5-signs-ready-for-ai</loc><priority>0.7</priority></url>
+  <url><loc>https://uncodeai.io/blog/ai-agents-vs-automation</loc><priority>0.7</priority></url>
+  <url><loc>https://uncodeai.io/blog/how-to-measure-ai-roi</loc><priority>0.7</priority></url>
+  <url><loc>https://uncodeai.io/blog/what-is-fractional-ai-advisor</loc><priority>0.7</priority></url>
+</urlset>

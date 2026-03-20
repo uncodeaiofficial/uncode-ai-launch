@@ -6,7 +6,9 @@ import LogoIcon from "./LogoIcon";
 const navLinks = [
   { label: "Services", href: "#services" },
   { label: "How We Work", href: "#how-we-work" },
+  { label: "ROI Calculator", href: "#roi-calculator" },
   { label: "Case Studies", href: "#cases" },
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -33,18 +35,26 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <LogoIcon className="w-8 h-8 text-primary" />
-          <span className="text-foreground font-medium text-lg tracking-tight">Uncode AI</span>
+          <span className="text-foreground text-lg tracking-tight" style={{ fontFamily: "'Satoshi', sans-serif", fontWeight: 700 }}>Uncode AI</span>
         </a>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <motion.a
               key={link.label}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 relative"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
             >
               {link.label}
-            </a>
+              <motion.span
+                className="absolute -bottom-0.5 left-0 h-px bg-primary"
+                variants={{ rest: { width: 0 }, hover: { width: "100%" } }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+              />
+            </motion.a>
           ))}
           <a
             href="#contact"

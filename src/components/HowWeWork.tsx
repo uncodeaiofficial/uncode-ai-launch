@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const steps = [
   {
@@ -29,6 +29,7 @@ type Step = typeof steps[0];
 const StepCard = ({ step, index }: { step: Step; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
@@ -36,16 +37,22 @@ const StepCard = ({ step, index }: { step: Step; index: number }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.15, ease: [0.2, 0, 0, 1] }}
-      className="flex-1 relative"
+      className="flex-1 relative cursor-default"
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
     >
       {/* Connector line between steps on desktop. Visually verify alignment in final check — adjust left-16 if misaligned. */}
       {index < steps.length - 1 && (
         <div className="hidden lg:block absolute top-5 left-16 right-0 h-px bg-border" />
       )}
       <div className="relative z-10">
-        <span className="font-mono text-4xl font-medium text-primary/30 block mb-4">
+        <motion.span
+          animate={{ color: hovered ? "hsl(180 74% 36%)" : "hsl(180 74% 36% / 0.3)" }}
+          transition={{ duration: 0.25 }}
+          className="font-mono text-4xl font-medium block mb-4"
+        >
           {step.number}
-        </span>
+        </motion.span>
         <h3 className="text-xl font-medium text-foreground tracking-tight mb-3">{step.title}</h3>
         <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
       </div>
