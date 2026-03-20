@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OG Image Generator — Uncode AI</title>
+<style>
+  body { margin: 0; background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: sans-serif; }
+  canvas { border: 1px solid #333; }
+  button { margin-top: 20px; padding: 12px 28px; background: #1ec8a0; color: #000; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }
+  p { color: #888; font-size: 13px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<canvas id="og" width="1200" height="630"></canvas>
+<button onclick="download()">Download og-image.png</button>
+<p>Save the downloaded file as <strong>public/og-image.png</strong> in your project</p>
+<script>
+const canvas = document.getElementById('og');
+const ctx = canvas.getContext('2d');
+
+// Background gradient
+const bg = ctx.createLinearGradient(0, 0, 1200, 630);
+bg.addColorStop(0, '#071414');
+bg.addColorStop(0.5, '#0a1f1f');
+bg.addColorStop(1, '#071414');
+ctx.fillStyle = bg;
+ctx.fillRect(0, 0, 1200, 630);
+
+// Grid dots
+ctx.fillStyle = 'rgba(30, 200, 160, 0.08)';
+for (let x = 40; x < 1200; x += 60) {
+  for (let y = 40; y < 630; y += 60) {
+    ctx.beginPath();
+    ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+// Glow circle top-right
+const glow = ctx.createRadialGradient(950, 150, 0, 950, 150, 320);
+glow.addColorStop(0, 'rgba(30, 200, 160, 0.12)');
+glow.addColorStop(1, 'rgba(30, 200, 160, 0)');
+ctx.fillStyle = glow;
+ctx.fillRect(0, 0, 1200, 630);
+
+// Bottom-left glow
+const glow2 = ctx.createRadialGradient(200, 500, 0, 200, 500, 250);
+glow2.addColorStop(0, 'rgba(30, 200, 160, 0.07)');
+glow2.addColorStop(1, 'rgba(30, 200, 160, 0)');
+ctx.fillStyle = glow2;
+ctx.fillRect(0, 0, 1200, 630);
+
+// Logo brackets
+ctx.strokeStyle = '#1ec8a0';
+ctx.lineWidth = 5;
+ctx.lineCap = 'round';
+ctx.lineJoin = 'round';
+
+// Left bracket {
+const lx = 90, ly = 230, s = 80;
+ctx.beginPath();
+ctx.moveTo(lx + 24, ly);
+ctx.lineTo(lx + 12, ly);
+ctx.quadraticCurveTo(lx, ly, lx, ly + 12);
+ctx.lineTo(lx, ly + s/2 - 10);
+ctx.quadraticCurveTo(lx - 14, ly + s/2, lx - 14, ly + s/2);
+ctx.quadraticCurveTo(lx - 14, ly + s/2, lx, ly + s/2 + 10);
+ctx.lineTo(lx, ly + s - 12);
+ctx.quadraticCurveTo(lx, ly + s, lx + 12, ly + s);
+ctx.lineTo(lx + 24, ly + s);
+ctx.stroke();
+
+// Right bracket }
+const rx = lx + 60;
+ctx.beginPath();
+ctx.moveTo(rx - 24, ly);
+ctx.lineTo(rx - 12, ly);
+ctx.quadraticCurveTo(rx, ly, rx, ly + 12);
+ctx.lineTo(rx, ly + s/2 - 10);
+ctx.quadraticCurveTo(rx + 14, ly + s/2, rx + 14, ly + s/2);
+ctx.quadraticCurveTo(rx + 14, ly + s/2, rx, ly + s/2 + 10);
+ctx.lineTo(rx, ly + s - 12);
+ctx.quadraticCurveTo(rx, ly + s, rx - 12, ly + s);
+ctx.lineTo(rx - 24, ly + s);
+ctx.stroke();
+
+// UNCODE AI — main title
+ctx.fillStyle = '#f0fafa';
+ctx.font = 'bold 86px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+ctx.letterSpacing = '-3px';
+ctx.fillText('Uncode AI', 90, 400);
+
+// Tagline
+ctx.fillStyle = 'rgba(240, 250, 250, 0.55)';
+ctx.font = '28px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+ctx.fillText('The Intelligence Layer for Modern Business', 90, 452);
+
+// Teal accent line
+ctx.strokeStyle = '#1ec8a0';
+ctx.lineWidth = 3;
+ctx.beginPath();
+ctx.moveTo(90, 480);
+ctx.lineTo(700, 480);
+ctx.stroke();
+
+// URL bottom
+ctx.fillStyle = '#1ec8a0';
+ctx.font = '600 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+ctx.fillText('uncodeai.io', 90, 560);
+
+// Right side — service chips
+const chips = ['AI Strategy', 'AI Automation', 'Custom AI Dev', 'AI Agents', 'GEO'];
+chips.forEach((chip, i) => {
+  const cx = 760, cy = 220 + i * 64;
+  ctx.strokeStyle = 'rgba(30, 200, 160, 0.3)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.roundRect(cx, cy, 320, 44, 8);
+  ctx.stroke();
+  ctx.fillStyle = 'rgba(30, 200, 160, 0.05)';
+  ctx.fill();
+  ctx.fillStyle = 'rgba(240, 250, 250, 0.7)';
+  ctx.font = '500 18px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
+  ctx.fillText(chip, cx + 18, cy + 28);
+  // dot
+  ctx.fillStyle = '#1ec8a0';
+  ctx.beginPath();
+  ctx.arc(cx + 300, cy + 22, 4, 0, Math.PI * 2);
+  ctx.fill();
+});
+
+function download() {
+  const a = document.createElement('a');
+  a.download = 'og-image.png';
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+</script>
+</body>
+</html>

@@ -17,6 +17,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import CursorGlow from "@/components/CursorGlow";
 import StickyBookCall from "@/components/StickyBookCall";
 import CookieConsent from "@/components/CookieConsent";
+import TawkTo from "@/components/TawkTo";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
+      <TawkTo />
       <ScrollProgress />
       <CursorGlow />
       <StickyBookCall />
